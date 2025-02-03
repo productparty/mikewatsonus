@@ -1,33 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mike Watson - Senior Product Owner</title>
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michael Watson - Senior Product Leader</title>
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <!-- Simple Navigation -->
-    <nav aria-label="Main">
-        <ul class="nav-list">
-            <li><a href="#work">Work</a></li>
-            <li><a href="#projects">Projects</a></li>
-        </ul>
-    </nav>
+  <nav class="nav">
+    <ul class="nav__list">
+      <li><a href="#profile" class="nav__link">Profile</a></li>
+      <li><a href="#experience" class="nav__link">Experience</a></li>
+      <li><a href="#skills" class="nav__link">Skills</a></li>
+      <li><a href="#performance" class="nav__link">Performance</a></li>
+    </ul>
+  </nav>
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <h1>Building Products That Scale</h1>
-    </header>
+  <section id="profile" class="section hero">
+    <div class="profile-content">
+      <h1 class="section__title">Michael Watson</h1>
+      <p class="section__subtitle">Senior Product Owner</p>
+      <div class="metric-badges">
+        <div class="metric">
+          <span class="metric-number">14+</span>
+          <span class="metric-label">Years Experience</span>
+        </div>
+        <div class="metric">
+          <span class="metric-number">300%</span>
+          <span class="metric-label">Process Improvements</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Project Grid -->
-    <section id="projects" class="project-grid">
-        <article class="project-card">
-            <h2>Project Alpha</h2>
-            <p>Product lifecycle management system</p>
-        </article>
-    </section>
+  <section id="experience" class="section">
+    <h2 class="section__title">Professional Journey</h2>
+    <div class="timeline" id="timelineContainer"></div>
+  </section>
 
-    <script src="/js/app.js"></script>
+  <section id="skills" class="section">
+    <h2 class="section__title">Core Competencies</h2>
+    <div class="skills-grid" id="skillsGrid"></div>
+  </section>
+
+  <section id="performance" class="section">
+    <h2 class="section__title">Technical Leadership</h2>
+    <div class="lighthouse-grid">
+      <div class="score-card">
+        <div class="score-value">97</div>
+        <h3>Performance</h3>
+        <p>Optimized asset delivery</p>
+      </div>
+      <div class="score-card">
+        <div class="score-value">100</div>
+        <h3>Accessibility</h3>
+        <p>WCAG 2.1 compliant</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="./js/app.js"></script>
 </body>
 </html>
