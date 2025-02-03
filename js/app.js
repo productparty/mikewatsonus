@@ -62,6 +62,25 @@ const community = [
   }
 ];
 
+// Fetch and Display RSS Feed
+const fetchRSSFeed = async () => {
+  const rssUrl = 'https://www.productparty.us/feed';
+  const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`);
+  const data = await response.json();
+  const feedContainer = document.getElementById('rssFeed');
+
+  data.items.forEach(item => {
+    const feedItem = document.createElement('div');
+    feedItem.className = 'feed-item';
+    feedItem.innerHTML = `
+      <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+      <p>${item.pubDate}</p>
+      <p>${item.description}</p>
+    `;
+    feedContainer.appendChild(feedItem);
+  });
+};
+
 // Initialize Content
 document.addEventListener('DOMContentLoaded', () => {
   const experienceGrid = document.getElementById('experienceGrid');
@@ -109,6 +128,9 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     communityGrid.appendChild(card);
   });
+
+  // Load RSS Feed
+  fetchRSSFeed();
 
   // Smooth Scroll
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {

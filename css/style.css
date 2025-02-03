@@ -63,3 +63,26 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
+/* RSS Feed */
+.rss-feed {
+  display: grid;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feed-item {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+}
+
+.feed-item h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.feed-item p {
+  margin: 0.5rem 0;
+}
