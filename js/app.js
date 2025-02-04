@@ -81,6 +81,26 @@ const fetchRSSFeed = async () => {
   });
 };
 
+// Fetch and Display Newsletter Feed
+const newsletterFeed = document.getElementById('news-feed');
+fetch('https://productparty.us/feed.json')
+  .then(response => response.json())
+  .then(data => renderPosts(data.slice(0, 3)))
+  .catch(error => console.error('Error fetching newsletter:', error));
+
+function renderPosts(posts) {
+  posts.forEach(post => {
+    newsletterFeed.innerHTML += `
+      <article class="post-card">
+        <time>${new Date(post.date).toLocaleDateString()}</time>
+        <h3>${post.title}</h3>
+        <p>${post.excerpt}</p>
+        <a href="${post.url}" class="cta-pulse">Read Analysis →</a>
+      </article>
+    `;
+  });
+}
+
 // Initialize Content
 document.addEventListener('DOMContentLoaded', () => {
   const experienceGrid = document.getElementById('experienceGrid');
@@ -92,13 +112,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const card = document.createElement('article');
     card.className = 'experience-card';
     card.innerHTML = `
-      <div class="company-header">
-        <h3>${exp.company}</h3>
-        <span class="period">${exp.period}</span>
-      </div>
-      <h4 class="position">${exp.position}</h4>
-      <ul class="achievement-list">
-        ${exp.achievements.map(a => `<li>${a}</li>`).join('')}
+      <h3>${exp.position} at ${exp.company}</h3>
+      <p>${exp.period}</p>
+      <ul>
+        ${exp.achievements.map(ach => `<li>${ach}</li>`).join('')}
       </ul>
     `;
     experienceGrid.appendChild(card);
@@ -106,24 +123,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load Skills
   skills.forEach(skillSet => {
-    const category = document.createElement('div');
-    category.className = 'skill-category';
-    category.innerHTML = `
-      <h3>${skillSet.category}</h3>
-      <ul>
-        ${skillSet.items.map(item => `<li>${item}</li>`).join('')}
-      </ul>
+    const card = document.createElement('article');
+    card.className = 'skills-card skill-card';
+    card.innerHTML = `
+      <div class="skill-card-inner">
+        <div class="skill-card-front">
+          <h3>${skillSet.category}</h3>
+          <ul>
+            ${skillSet.items.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </div>
+        <div class="skill-card-back">
+          <h3>Certifications</h3>
+          <ul>
+            <li>Certification 1</li>
+            <li>Certification 2</li>
+          </ul>
+        </div>
+      </div>
     `;
-    skillsMatrix.appendChild(category);
+    skillsMatrix.appendChild(card);
   });
 
   // Load Community
   community.forEach(comm => {
-    const card = document.createElement('div');
+    const card = document.createElement('article');
     card.className = 'community-card';
     card.innerHTML = `
-      <h3>${comm.organization}</h3>
-      <p class="role">${comm.role}</p>
+      <h3>${comm.role} at ${comm.organization}</h3>
       <p>${comm.contribution}</p>
     `;
     communityGrid.appendChild(card);
@@ -141,4 +168,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+  // Preconnect to analytics domains
+  const link = document.createElement('link');
+  link.rel = 'preconnect';
+  link.href = 'https://www.google-analytics.com';
+  document.head.appendChild(link);
 });

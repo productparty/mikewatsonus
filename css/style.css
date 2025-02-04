@@ -1,88 +1,196 @@
 :root {
-  --primary: #2c3e50;
-  --secondary: #3498db;
-  --accent: #e74c3c;
-  --text: #333;
+  --primary-color: #4CAF50;
+  --secondary-color: #333;
+  --background-color: #f4f4f4;
+  --text-color: #333;
+  --link-color: #4CAF50;
 }
 
-/* Experience Grid */
-.experience-grid {
-  display: grid;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
 }
 
-.experience-card {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+header {
+  background-color: var(--primary-color);
+  padding: 1rem;
 }
 
-.company-header {
+.nav__list {
+  list-style: none;
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 1rem;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
 }
 
-.achievement-list li {
-  margin: 0.5rem 0;
-  padding-left: 1rem;
+.nav__link {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+.nav__link:hover {
+  background-color: var(--secondary-color);
+}
+
+.section {
+  padding: 2rem;
+  margin: 1rem 0;
+}
+
+.hero {
+  background: linear-gradient(135deg, #4CAF50 0%, #f4f4f4 100%);
+  text-align: center;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
-.achievement-list li::before {
-  content: "▹";
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.1);
+}
+
+.contact-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-bar span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.experience-grid, .skills-matrix, .community-grid, .rss-feed {
+  display: grid;
+  gap: 1rem;
+}
+
+.experience-card, .skills-card, .community-card, .feed-item {
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.skills-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease;
+}
+
+.skills-card:hover {
+  transform: scale(1.05);
+}
+
+.skill-card {
+  perspective: 1000px;
+}
+
+.skill-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.skill-card:hover .skill-card-inner {
+  transform: rotateY(180deg);
+}
+
+.skill-card-front, .skill-card-back {
   position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.skill-card-back {
+  transform: rotateY(180deg);
+}
+
+.skill-meter::after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: var(--skill-level);
+  background: linear-gradient(90deg, #4F46E5 0%, #EC4899 100%);
+  transition: width 0.3s ease;
+}
+
+.career-timeline {
+  position: relative;
+  padding: 2rem 0;
+}
+
+.career-timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #4CAF50;
+}
+
+.career-timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.career-timeline-item:nth-child(odd) {
   left: 0;
-  color: var(--secondary);
 }
 
-/* Skills Matrix */
-.skills-matrix {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+.career-timeline-item:nth-child(even) {
+  left: 50%;
 }
 
-.skill-category {
-  background: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 8px;
+.career-timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  left: -8px;
+  width: 16px;
+  height: 16px;
+  background: #4CAF50;
+  border-radius: 50%;
 }
 
-/* Community Impact */
-.community-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+footer {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 }
 
-/* RSS Feed */
-.rss-feed {
-  display: grid;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+@media print {
+  .newsletter-feed, nav { display: none; }
+  .experience { break-inside: avoid; }
 }
 
-.feed-item {
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-}
-
-.feed-item h3 {
-  margin: 0 0 0.5rem 0;
-}
-
-.feed-item p {
-  margin: 0.5rem 0;
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  lazy-load: true;
 }
